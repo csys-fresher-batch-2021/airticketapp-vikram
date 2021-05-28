@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main Booking Page</title>
+    <link rel="stylesheet" href="D:\airticketapp-integrated\assets\css\booking.css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
+    <script src="D:\airticketapp-integrated\service\StorageManager.js"></script>
+    <script src="D:\airticketapp-integrated\service\PriceEstimator.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="D:\airticketapp-integrated\validator\Validator.js"></script>
+</head>
+
+<body>
+    <div class="heading">
+        <h1 class="heading-one">Booking Page</h1>
+    </div>
+    <div class="container">
+        <form action="" id="myForm">
+            <div class="flightId">
+                <label class="form-label" for="flightid">Flight Id</label>
+                <input class="form-control" type="text" name="flightid" id="flightid">
+            </div>
+            <div class="noOfTickets">
+                <label class="form-label" for="mySelect">No of Tickets:</label>
+                <select class="form-control" name="mySelect" id="mySelect">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="seatType">
+                <label class="form-label" for="seatType">Seat Type :</label>
+                <br>
+                <input type="radio" id="seatType" name="seatType" value="Economy">
+                <label class="form-label" for="economy">Economy</label>
+                <input type="radio" id="seatType" name="seatType" value="Business">
+                <label class="form-label" for="business">Business</label>
+            </div>
+            <div class="adults">
+                <label class="form-label" for="noOfAdults">Adults(13+ years) :</label>
+                <input class="form-control" type="number" name="noOfAdults" id="noOfAdults" value="0">
+            </div>
+            <div class="children">
+                <label class="form-label" for="noOfChildren">Children(2-13 years) :</label>
+                <input class="form-control" type="number" name="noOfChildren" id="noOfChildren" value="0">
+            </div>
+            <div class="infants">
+                <label class="form-label" for="noOfInfants">Infants(under 2) :</label>
+                <input class="form-control" type="number" name="noOfInfants" id="noOfInfants" value="0">
+            </div>
+            <div class="submit-btn">
+                <button class="btn btn-danger" type="submit" id="bookButton" value="submit">Book</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let bookButton = document.getElementById('bookButton');
+        let flightId = StorageManager.getFromStorage('FlightID');
+
+        bookButton.addEventListener("click", function () {
+            event.preventDefault();
+            let noOfTicketsValue = document.getElementById('mySelect').value;
+            let adultsValue = document.getElementById('noOfAdults').value;
+            let childrenValue = document.getElementById('noOfChildren').value;
+            let infantValue = document.getElementById('noOfInfants').value;
+
+            let noOfTickets = JSON.parse(noOfTicketsValue);
+            let adultsCount = JSON.parse(adultsValue);
+            let childrenCount = JSON.parse(childrenValue);
+            let infantCount = JSON.parse(infantValue);
+
+            console.log(adultsCount, childrenCount, infantCount);
+            let totalCount = adultsCount + childrenCount + infantCount;
+            let seatType = document.querySelector('input[name="seatType"]:checked');
+            let isTypeChecked = Validator.validateSeatType(seatType);
+
+            if (isTypeChecked) {
+                if (totalCount == noOfTickets) {
+                    let adultPrice = PriceEstimator.estimatedPriceForAdults(adultsCount, seatType.value);
+                    let childrenPrice = PriceEstimator.estimatedPriceForChildren(childrenCount, seatType.value);
+                    let infantPrice = PriceEstimator.estimatedPriceForInfants(infantCount, seatType.value);
+                    let calculatedPrice = PriceEstimator.calculatePrice(JSON.parse(adultPrice), JSON.parse(childrenPrice), JSON.parse(infantPrice));
+
+                    StorageManager.saveToStorage("Seat", JSON.stringify(seatType.value));
+                    StorageManager.saveToStorage("TicketCount", JSON.stringify(noOfTickets));
+                    StorageManager.saveToStorage("Adults", JSON.stringify(adultsCount));
+                    StorageManager.saveToStorage("Children", JSON.stringify(childrenCount));
+                    StorageManager.saveToStorage("Infant", JSON.stringify(infantCount));
+                    StorageManager.saveToStorage("Price", JSON.stringify(calculatedPrice));
+                    window.location.href = "ticket.html";
+                }
+                else {
+                    alert("Ticket count not matching");
+                }
+            }
+            else {
+                alert("Choose your seat type");
+            }
+        });
+        document.getElementById('flightid').value = flightId;
+    </script>
+</body>
+
+</html>

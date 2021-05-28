@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flights Schedule</title>
+    <script src="D:\airticketapp-integrated\service\StorageManager.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="display-4 text-center">Quintessa Trip</h1>
+    </header>
+    <h3>Flights Schedule</h3>
+
+    <section class="m-2">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Flight ID</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Departure place and time</th>
+                    <th scope="col">Arrival place and time</th>
+                    <th scope="col">Economy</th>
+                    <th scope="col">Business</th>
+                    <th scope="col">Price (Rs)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="table-content"></tbody>
+        </table>
+    </section>
+
+    <script src="D:\airticketapp-integrated\service\FlightManager.js"></script>
+    <script src="D:\airticketapp-integrated\service\DynamicElements.js"></script>
+    <script src="D:\airticketapp-integrated\assets\js\AllFlights.js"></script>
+    
+    <!-- <script>
+        let flightIds = { id1: 'GA645', id2: 'IG570', id3: 'IA679' };
+        let flightFares = { flightFare1: 4800, flightFare2: 4200, flightFare3: 4200 };
+        let bookButton1 = document.getElementById('bookButton1');
+        let bookButton2 = document.getElementById('bookButton2');
+        let bookButton3 = document.getElementById('bookButton3');
+
+        //Button event listener for booking button 1.
+        bookButton1.addEventListener("click", function () {
+            StorageManager.saveToStorage("FlightID", flightIds.id1);
+            StorageManager.saveToStorage("FlightFare", flightFares.flightFare1);
+            window.location.assign('bookingpage.html');
+        });
+
+        //Button event listener for booking button2.
+        bookButton2.addEventListener("click", function () {
+            StorageManager.saveToStorage("FlightID", flightIds.id2);
+            StorageManager.saveToStorage("FlightFare", flightFares.flightFare2);
+            window.location.assign('bookingpage.html');
+        });
+
+        //Button event listener for booking button3.
+        bookButton3.addEventListener("click", function () {
+            StorageManager.saveToStorage("FlightID", flightIds.id3);
+            StorageManager.saveToStorage("FlightFare", flightFares.flightFare3);
+            window.location.assign('bookingpage.html');
+        });
+    </script> -->
+</body>
+
+</html>
