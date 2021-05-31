@@ -1,0 +1,3 @@
+KEY : FLIGHTS
+VALUE:
+[{"airline":"GoAir","date":"28-05-2021","deptPlaceTime":"Chennai (10:00)","arrPlaceTime":"Vishakapatnam (13:00)","economy":"20","business":"10","economyPrice":"4200","businessPrice":"5800","id":"101"}, {"airline":"Indian","date":"30-05-2021","deptPlaceTime":"Bangalore (04:00)","arrPlaceTime":"Chennai (10:00)","economy":"35","business":"10","economyPrice":"4250","businessPrice":"6000","id":"342"}]
