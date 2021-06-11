@@ -1,32 +1,35 @@
 let flights = [];
-class FlightManager{
+class FlightManager {
 
     /**
      * This function add flight name to the local storage.
      * param{String} flight.
      */
-    static addFlight(flight){
-        let flights = this.getAllFlights();
-        let length = flights.length;
-        if(length > 0){
-            let lastElementId = flights[length-1].id;
-            flight['id'] = lastElementId + 1;
+    static async addFlight(flight) {
+        try {
+            let url = "http://localhost:3000/api/flights/";
+            let result = await axios.post(url, flight);
+            return result;
+        } catch (err) {
+            console.log(err);
         }
-        else{
-            flight['id'] = 1;
-        }
-        flights.push(flight);
-        this.saveToStorage(flights);
-        console.log("Flight saved");    
     }
 
     /**
      * This function retreives all the flight details.
      * return flights.
      */
-    static getAllFlights(){
-        let flights = JSON.parse(localStorage.getItem("FLIGHTS")) || [];
-        return flights;
+    static async getAllFlights() {
+        // let flights = JSON.parse(localStorage.getItem("FLIGHTS")) || [];
+        // return flights;
+
+        try {
+            let url = "http://localhost:3000/api/flights";
+            let result = await axios.get(url);
+            return result.data;
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     // static getFlight(flightId){
@@ -39,11 +42,11 @@ class FlightManager{
      * This function can help the admin to remove the flight.
      * param{String} flightName.
      */
-    static removeFlight(flightId){
+    static removeFlight(flightId) {
         let flights = this.getAllFlights();
         let index = flights.indexOf(flightId);
 
-        if(index != -1){
+        if (index != -1) {
             flights.splice(index, 1);
         }
         localStorage.setItem("FLIGHTS", JSON.stringify(flights));
@@ -54,11 +57,11 @@ class FlightManager{
      * param{String} flightName.
      * returns status.
      */
-    static updateTicketStatus(flightId){
+    static updateTicketStatus(flightId) {
         let flights = this.getAllFlights();
         let index = flights.indexOf(flightId);
         let status = 'not confirmed';
-        if(index != -1){
+        if (index != -1) {
             status = 'confirmed';
         }
         localStorage.setItem("STATUS", JSON.stringify(status));
@@ -69,7 +72,7 @@ class FlightManager{
      * This function stores and return the booked date.
      * returns date.
      */
-    static bookingDate(){
+    static bookingDate() {
         let today = new Date().toLocaleDateString();
         localStorage.setItem('DATE BOOKED', JSON.stringify(today));
         return today;
@@ -79,7 +82,7 @@ class FlightManager{
      * Function to store flights to storage.
      * @param {*} flights
      */
-    static saveToStorage(flights){
+    static saveToStorage(flights) {
         localStorage.setItem("FLIGHTS", JSON.stringify(flights));
     }
 }
