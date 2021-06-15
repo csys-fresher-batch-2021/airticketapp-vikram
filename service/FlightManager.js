@@ -32,24 +32,29 @@ class FlightManager {
         }
     }
 
-    // static getFlight(flightId){
-    //     let flight;
-    //     let flights = this.getAllFlights();
-    //     for(let i = 0; i < flights.length; i++)
-    // }
+    static async updateFlight(oldFlightId, newFlight){
+        try {
+            let url = "http://localhost:3000/api/flights/" + oldFlightId;
+            let result = await axios.put(url, newFlight);
+            return result;
+        } catch (error) {
+            console.log(error.response.data);
+        }
+    }
+    
 
     /**
      * This function can help the admin to remove the flight.
      * param{String} flightName.
      */
-    static removeFlight(flightId) {
-        let flights = this.getAllFlights();
-        let index = flights.indexOf(flightId);
-
-        if (index != -1) {
-            flights.splice(index, 1);
+    static async removeFlight(flightId) {
+        try {
+            let url = "http://localhost:3000/api/flights/" + flightId;
+            let result = await axios.delete(url);
+            return result;
+        } catch (error) {
+            console.log(error);
         }
-        localStorage.setItem("FLIGHTS", JSON.stringify(flights));
     }
 
     /**
@@ -84,5 +89,30 @@ class FlightManager {
      */
     static saveToStorage(flights) {
         localStorage.setItem("FLIGHTS", JSON.stringify(flights));
+    }
+
+    /**
+     * Function to get current flight id.
+     */
+    static getCurrentFlightId(){
+        let flightId = JSON.parse(localStorage.getItem('FLIGHTID'));
+        return flightId;
+    }
+
+    /**
+     * Function to get current flight data.
+     * @param {*} id 
+     */
+    static async getFlightData(id){
+        let flight;
+        flights = await this.getAllFlights();
+        console.log(flights);
+        for(let i = 0; i < flights.length; i++){
+            if(flights[i].id === parseInt(id)){
+                flight = flights[i];
+                break;
+            }
+        }
+        return flight;
     }
 }

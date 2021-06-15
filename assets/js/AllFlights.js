@@ -14,9 +14,13 @@ async function displayFlights(){
         //creating tr for a application.
         let tr = DynamicElements.createTableRow();
         //creating th for flight Id.
-        let th = DynamicElements.createTableHeader(element.flight_no);
+        let th = DynamicElements.createTableHeader(element.id);
         th.id = "id";
         tr.appendChild(th);
+
+        let tdFlightNo = DynamicElements.createTableData();
+        tdFlightNo.innerText = element.flight_no;
+        tr.appendChild(tdFlightNo);        
 
         //creating td for flight company name.
         let tdAirline = DynamicElements.createTableData();
@@ -77,9 +81,10 @@ async function displayFlights(){
         //appending tr to tbody tag in html
         tableContent.appendChild(tr);
     });
+    addListenerToButtons();
 }
 
-addListenerToButtons();
+
 /**
  * Function to add event listener to all dynamically generated buttons.
  */
@@ -87,14 +92,9 @@ function addListenerToButtons(){
     if(document.querySelector('button')){
         document.querySelectorAll('.viewBtn').forEach(function(event){
             event.addEventListener('click', function(e){
-                // let flightId = e.target.parentNode.parentNode.querySelector('#id').innerText;
-                // let economyPrice = e.target.parentNode.parentNode.querySelector('#economy').innerText;
-                // let businessPrice = e.target.parentNode.parentNode.querySelector('#business').innerText;
-                // localStorage.setItem("FlightID", flightId);
-                // localStorage.setItem("EconomyPrice", economyPrice);
-                // localStorage.setItem("BusinessPrice", businessPrice);
-                // window.location.href = "bookingpage.html";
-                window.alert("Old is gold");
+                let flightId = e.target.parentNode.parentNode.querySelector('th').innerText;
+                localStorage.setItem("FLIGHTID", JSON.stringify(flightId));
+                window.location.href = "viewFlightDetails.html";
             });
         });
     }

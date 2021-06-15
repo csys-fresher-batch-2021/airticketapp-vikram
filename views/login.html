@@ -60,11 +60,9 @@
             let isUserExists = Validator.isUserExists(username, password);
 
             //checking both user name and password is validated.
-            if (isUsernameValidated && isPasswordValidated) {
-                if (isUserExists) { //checking whether the username is registered or not.
-                    window.location.assign("display.html");
-                    alert("Successfully Logged in.");
-                }
+            if (isUsernameValidated && isPasswordValidated && isUserExists) { //checking whether the username is registered or not.
+                window.location.assign("display.html");
+                alert("Successfully Logged in.");
             }
         });
     </script>

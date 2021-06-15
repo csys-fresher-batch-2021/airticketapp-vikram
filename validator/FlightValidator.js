@@ -29,7 +29,7 @@ class FlightValidator {
      */
     static isEmpty(data) {
         let valid = false;
-        if (data.trim().length < 1) {
+        if (data.toString().trim().length < 1) {
             valid = true;
         }
         return valid;
@@ -40,7 +40,7 @@ class FlightValidator {
      * @param {*} time 
      */
     static validateTime(time){
-        let regex = "/^([0-9]{2})\:([0-9]{2})$/";
+        let regex = /^([0-9]{2})\:([0-9]{2})\:([0-9]{2})$/;
         let valid = false;
         if(time.match(regex)){
             valid = true;
@@ -79,8 +79,8 @@ class FlightValidator {
      */
     static validatePrice(price){
         let valid =false;
-        let digitsCount = FlightValidator.countDigits(no);
-        if(!isNaN(no) && digitsCount >= 4){
+        let digitsCount = FlightValidator.countDigits(price);
+        if(!isNaN(price) && digitsCount >= 4){
             valid = true;
         }
         return valid;
