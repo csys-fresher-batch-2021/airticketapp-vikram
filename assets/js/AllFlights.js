@@ -1,14 +1,15 @@
 let tableContent = document.getElementById('table-content');
 
-let allFlights = FlightManager.getAllFlights();
 
-displayFlights(allFlights);
+
+displayFlights();
 
 /**
  * Function to display all application to table.
  * @param {*} applications 
  */
-function displayFlights(flights){
+async function displayFlights(){
+    let flights = await FlightManager.getAllFlights();
     flights.forEach(element => {
         //creating tr for a application.
         let tr = DynamicElements.createTableRow();
@@ -17,6 +18,10 @@ function displayFlights(flights){
         th.id = "id";
         tr.appendChild(th);
 
+        let tdFlightNo = DynamicElements.createTableData();
+        tdFlightNo.innerText = element.flight_no;
+        tr.appendChild(tdFlightNo);        
+
         //creating td for flight company name.
         let tdAirline = DynamicElements.createTableData();
         tdAirline.innerText = element.airline;
@@ -24,18 +29,26 @@ function displayFlights(flights){
         
         //creating td for date.
         let tdDate = DynamicElements.createTableData();
-        tdDate.innerText = element.date;
+        tdDate.innerText = element.flight_date.substr(0,10);
         tr.appendChild(tdDate);
 
         //creating td for departure place and time.
-        let tdDeptPlaceTime = DynamicElements.createTableData();
-        tdDeptPlaceTime.innerText = element.deptPlaceTime;
-        tr.appendChild(tdDeptPlaceTime);
+        let tdDeptPlace = DynamicElements.createTableData();
+        tdDeptPlace.innerText = element.origin;
+        tr.appendChild(tdDeptPlace);
 
         //creating td for arrival place and time.
-        let tdArrPlaceTime = DynamicElements.createTableData();
-        tdArrPlaceTime.innerText = element.arrPlaceTime;
-        tr.appendChild(tdArrPlaceTime);
+        let tdArrPlace = DynamicElements.createTableData();
+        tdArrPlace.innerText = element.destiny;
+        tr.appendChild(tdArrPlace);
+
+        let tdDeptTime = DynamicElements.createTableData();
+        tdDeptTime.innerText = element.depart_time;
+        tr.appendChild(tdDeptTime);
+
+        let tdArrTime = DynamicElements.createTableData();
+        tdArrTime.innerText = element.arrival_time;
+        tr.appendChild(tdArrTime);
 
         //creating td for economy seat count.
         let tdEconomy = DynamicElements.createTableData();
@@ -49,13 +62,13 @@ function displayFlights(flights){
 
         //creating td for economy seat price.
         let tdEconomyPrice = DynamicElements.createTableData();
-        tdEconomyPrice.innerText = element.economyPrice;
+        tdEconomyPrice.innerText = element.economy_price;
         tdEconomyPrice.id = "economy";
         tr.appendChild(tdEconomyPrice);
 
          //creating td for business seat price.
          let tdBusinessPrice = DynamicElements.createTableData();
-         tdBusinessPrice.innerText = element.businessPrice;
+         tdBusinessPrice.innerText = element.business_price;
          tdBusinessPrice.id = "business";
          tr.appendChild(tdBusinessPrice);
 
@@ -68,9 +81,10 @@ function displayFlights(flights){
         //appending tr to tbody tag in html
         tableContent.appendChild(tr);
     });
+    addListenerToButtons();
 }
 
-addListenerToButtons();
+
 /**
  * Function to add event listener to all dynamically generated buttons.
  */
@@ -78,13 +92,9 @@ function addListenerToButtons(){
     if(document.querySelector('button')){
         document.querySelectorAll('.viewBtn').forEach(function(event){
             event.addEventListener('click', function(e){
-                let flightId = e.target.parentNode.parentNode.querySelector('#id').innerText;
-                let economyPrice = e.target.parentNode.parentNode.querySelector('#economy').innerText;
-                let businessPrice = e.target.parentNode.parentNode.querySelector('#business').innerText;
-                localStorage.setItem("FlightID", flightId);
-                localStorage.setItem("EconomyPrice", economyPrice);
-                localStorage.setItem("BusinessPrice", businessPrice);
-                window.location.href = "bookingpage.html";
+                let flightId = e.target.parentNode.parentNode.querySelector('th').innerText;
+                localStorage.setItem("FLIGHTID", JSON.stringify(flightId));
+                window.location.href = "viewFlightDetails.html";
             });
         });
     }

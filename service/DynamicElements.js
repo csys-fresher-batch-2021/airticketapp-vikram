@@ -5,9 +5,20 @@ class DynamicElements{
     static createButton(){
         let button = document.createElement('button');
         button.className = "btn btn-warning viewBtn";
+        button.innerText = "More";
+        return button;
+    }
+
+    /**
+     * Function to create button for booking.
+     */
+    static createBookButton(){
+        let button = document.createElement('button');
+        button.className = 'btn btn-danger bookBtn';
         button.innerText = "Book";
         return button;
     }
+    
     /**
      * Function to create tr tag.
      */

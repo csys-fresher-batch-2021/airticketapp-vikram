@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../assets/css/sidebar.css">
+    <title>Admin New Schedule</title>
+</head>
+
+<body>
+    <nav class="sidebar">
+        <div class="text-center">
+            <img src="../../assets/img/admin.png" class="img-thumbnail" alt="..." width="35%">
+        </div>
+        <a href="../admin/admin_dashboard.html">Dashboard</a>
+        <a href="../admin/admin_schedule.html" class="active">Schedule</a>
+        <a href="">Tickets</a>
+        <a href="">Log out</a>
+    </nav>
+
+    <header>
+        <h1 class="display-4 text-center">Schedule Maintenance</h1>
+    </header>
+
+    <main class="content">
+        <h5>Add new schedule</h5>
+        <form onsubmit="addFlight()">
+            <div class="form-group row">
+                <label class="col-2" for="flightNo">Flight Number:</label>
+                <input class="col-3" type="number" class="form-control" name="flightNo" id="flightNo" placeholder="Flight number" required
+                    autofocus>
+            </div>
+            <div class="form-group row">
+                <label class="col-2" for="airline">Airline:</label>
+                <input class="col-3" type="text" class="form-control" name="airline" id="airline" placeholder="Airline" required>
+            </div>
+            <div class="form-group row">
+                <label class="col-2" for="date">Date:</label>
+                <input class="col-3" type="date" class="form-control" name="date" id="date" placeholder="Date" required>
+            </div>
+            <div class="form-group row">
+                <label class="col-2" for="from">From:</label>
+                <input class="col-3" type="text" class="form-control" name="from" id="from" placeholder="Departure place" required>
+            </div>
+            <div class="form-group row">
+                <label class="col-2" for="to">To:</label>
+                <input class="col-3" type="text" class="form-control" name="to" id="to" placeholder="Arrival place" required>
+            </div>
+            <div class="form-group row">
+                <label class="col-2" for="departureTime">Departure Time:</label>
+                <input class="col-3" type="text" class="form-control" name="departureTime" id="departureTime" placeholder="HH:MM" required>
+            </div>
+            <div class="form-group row">
+                <label class="col-2" for="arrivalTime">Arrival Time:</label>
+                <input class="col-3" type="text" class="form-control" name="arrivalTime" id="arrivalTime" placeholder="HH:MM" required>
+            </div>
+            <div class="form-group row">
+                <label class="col-2" for="economy">Economy:</label>
+                <input class="col-3" type="number" class="form-control" name="economy" id="economy" placeholder="No of seats" required>
+            </div>
+            <div class="form-group row">
+                <label class="col-2" for="business">Business:</label>
+                <input class="col-3" type="number" class="form-control" name="business" id="business" placeholder="No of seats" required>
+            </div>
+            <div class="form-group row">
+                <label class="col-2" for="economyPrice">Economy Price:</label>
+                <input class="col-3" type="number" class="form-control" name="economyPrice" id="economyPrice" placeholder="Economy Price"
+                    required>
+            </div>
+            <div class="form-group row">
+                <label class="col-2" for="businessPrice">Business Price:</label>
+                <input class="col-3" type="number" class="form-control" name="businessPrice" id="businessPrice" placeholder="Business Price"
+                    required>
+            </div>
+            <div class="form-group row">
+                <button type="submit" class="btn btn-danger col-1" id="addSchedule">Add</button>
+            </div>
+            <div class="form-group row">
+                <button type="reset" class="btn btn-danger col-1">Refresh</button>
+            </div>
+        </form>
+
+        <section class="row">
+            <article class="col-4">
+                <div id="cardViewSchedule"></div>
+            </article>
+            <article class="col-4">
+                <div id="goToDashboard"></div>
+            </article>
+        </section>
+    </main>
+    <script>
+        $(document).ready(function () {
+            $('#cardViewSchedule').load("../admin/card_view_schedule.html");
+            $('#goToDashboard').load("../admin/card_goto_dashboard.html");
+        });
+    </script>
+    <script src="../../assets/js/AddFlight.js"></script>
+    <script src="../../validator/FlightValidator.js"></script>
+    <script src="../../service/FlightManager.js"></script>
+
+</body>
+
+</html>

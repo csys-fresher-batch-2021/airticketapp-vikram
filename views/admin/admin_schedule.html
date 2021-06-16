@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
         crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../assets/css/sidebar.css">
     <title>Admin Schedule</title>
 </head>
@@ -30,37 +32,24 @@
         <p>Welcome to Quintessa trip</p>
         <section class="row">
             <article class="col-4">
-                <div class="card" style="width: 18rem;">
-                    <img class="img-thumbnail" src="../../assets/img/schedulejpg.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">New Schedule</h5>
-                        <p class="card-text">Add new schedule for airlines.</p>
-                        <a href="add_schedule.html" class="btn btn-danger">Add</a>
-                    </div>
-                </div>
+                <div id="cardAddSchedule"></div>
             </article>
             <article class="col-4">
-                <div class="card" style="width: 18rem;">
-                    <img class="img-thumbnail" src="../../assets/img/view.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">List Schedule</h5>
-                        <p class="card-text">View or modify the schedule</p>
-                        <a href="view_schedule.html" class="btn btn-danger">View</a>
-                    </div>
-                </div>
+                <div id="cardViewSchedule"></div>
             </article>
             <article class="col-4">
-                <div class="card" style="width: 18rem;">
-                    <img class="img-thumbnail" src="../../assets/img/dashboard.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Dashboard Panel</h5>
-                        <p class="card-text">Go to dashboard.</p>
-                        <a href="../admin/admin_dashboard.html" class="btn btn-primary">Go</a>
-                    </div>
-                </div>
+                <div id="goToDashboard"></div>
             </article>
         </section>
     </main>
+
+    <script>
+        $(document).ready(function () {
+            $('#cardAddSchedule').load("../admin/card_add_schedule.html");
+            $('#cardViewSchedule').load("../admin/card_view_schedule.html");
+            $('#goToDashboard').load("../admin/card_goto_dashboard.html");
+        });
+    </script>
 </body>
 
 </html>

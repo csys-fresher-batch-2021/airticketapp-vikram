@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+        crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="../../assets/css/sidebar.css">
+</head>
+
+<body>
+    <nav class="sidebar">
+        <div class="text-center">
+            <img src="../../assets/img/admin.png" class="img-thumbnail" alt="..." width="35%">
+        </div>
+        <a href="../admin/admin_dashboard.html">Dashboard</a>
+        <a href="../admin/admin_schedule.html" class="active">Schedule</a>
+        <a href="">Tickets</a>
+        <a href="../../index.html">Log out</a>
+    </nav>
+    <header>
+        <h1 class="display-4 text-center">Flight Data Management</h1>
+    </header>
+    <main class="content">
+        <h5>Flight Details</h5>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Flight</th>
+                    <th>Information</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Flight No</td>
+                    <td>
+                        <span id="flightNo"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Airline</td>
+                    <td>
+                        <span id="airline"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td>
+                        <span id="date"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>origin</td>
+                    <td>
+                        <span id="origin"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>destiny</td>
+                    <td>
+                        <span id="destiny"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Departure Time</td>
+                    <td>
+                        <span id="departTime"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Arrival Time</td>
+                    <td>
+                        <span id="arrivalTime"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Economy</td>
+                    <td>
+                        <span id="economy"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Business</td>
+                    <td>
+                        <span id="business"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Economy Price</td>
+                    <td>
+                        <span id="economyPrice"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Business Price</td>
+                    <td>
+                        <span id="businessPrice"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="updateBtn" class="btn btn-primary">Update</button>
+        <button id="deleteBtn" class="btn btn-danger">Delete</button>
+    </main>
+    <script src="../../service/FlightManager.js"></script>
+    <script src="../../assets/js/viewFlightDetails.js"></script>
+</body>
+
+</html>
