@@ -1,5 +1,5 @@
-let economyPrice = localStorage.getItem("EconomyPrice");
-let businessPrice = localStorage.getItem("BusinessPrice");
+let economyPrice = JSON.parse(localStorage.getItem("EconomyPrice"));
+let businessPrice = JSON.parse(localStorage.getItem("BusinessPrice"));
 let economyType = "Economy";
 let businessType = "Business";
 

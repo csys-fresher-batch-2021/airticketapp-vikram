@@ -28,7 +28,7 @@ function addFlight() {
     }
 
     console.log(flight);
-    let isFieldsFilled = InputValidator.checkFormFields(flight);
+    let isFieldsFilled = FlightValidator.checkFormFields(flight);
     if(isFieldsFilled){
         FlightManager.addFlight(flight);
         window.location.href= "add_schedule.html"

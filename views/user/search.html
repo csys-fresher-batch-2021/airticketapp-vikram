@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Book your Ticket</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="../../assets/css/search.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Quintessa Trip</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h4 class="">Check Availability</h4>
+        <form>
+            <div class="form-group">
+                <label for="date">Travel Date :</label>
+                <input class="form-control" type="date" id="date">
+            </div>
+            <div class="form-group">
+                <label for="from">From :</label>
+                <select class="form-control" id="from">
+                    <option value="Chennai">Chennai</option>
+                    <option value="Vishakapatnam">Vishakapatnam</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="New Delhi">New Delhi</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Gujarat">Gujarat</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="to">To :</label>
+                <select class="form-control" id="to">
+                    <option value="Chennai">Chennai</option>
+                    <option value="Vishakapatnam">Vishakapatnam</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="New Delhi">New Delhi</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Gujarat">Gujarat</option>
+                </select>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary" id="searchBtn">search</button>
+        </form>
+    </div>
+    
+    <script src="../../service/StorageManager.js"></script>
+    <script src="../../service/FlightManager.js"></script>
+    <script src="../../assets/js/search.js"></script>
+</body>
+
+</html>
