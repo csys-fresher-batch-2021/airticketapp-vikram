@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ticket</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="../../assets/css/ticket.css">
+    
+</head>
+
+<body>
+    <header>
+        <h1 class="display-4 text-center">Ticket</h1>
+    </header>
+    <main class="content">
+        <h5>Flight Details</h5>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Ticket information</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Flight No</td>
+                    <td>
+                        <span id="flightId"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Airline</td>
+                    <td>
+                        <span id="airline"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td>
+                        <span id="date"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>origin</td>
+                    <td>
+                        <span id="origin"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>destiny</td>
+                    <td>
+                        <span id="destiny"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Departure Time</td>
+                    <td>
+                        <span id="departTime"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Arrival Time</td>
+                    <td>
+                        <span id="arrivalTime"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Seat Type</td>
+                    <td>
+                        <span id="seatType"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>No of tickets</td>
+                    <td>
+                        <span id="noOfTickets"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Adult</td>
+                    <td>
+                        <span id="adult"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Children</td>
+                    <td>
+                        <span id="children"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Infant</td>
+                    <td>
+                        <span id="infant"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td>
+                        <span id="price"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="payBtn" class="btn btn-primary">Pay</button>
+        <button id="printBtn" class="btn btn-warning">Print</button>
+        <div id="footer">
+            <small>Contact us.<a href="mailto:">support@quintessatrip.inc</a></small>
+        </div>
+    </main>
+    <script src="../../service/StorageManager.js"></script>
+    <script src="../../service/FlightManager.js"></script>
+    <script src="../../assets/js/ticket.js"></script>
+</body>
+
+</html>

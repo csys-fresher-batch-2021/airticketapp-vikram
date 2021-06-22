@@ -7,7 +7,7 @@ class FlightManager {
      */
     static async addFlight(flight) {
         try {
-            let url = "http://localhost:3000/api/flights/";
+            let url = "http://localhost:3000/api/v1/flights/";
             let result = await axios.post(url, flight);
             return result;
         } catch (err) {
@@ -24,8 +24,22 @@ class FlightManager {
         // return flights;
 
         try {
-            let url = "http://localhost:3000/api/flights";
+            let url = "http://localhost:3000/api/v1/flights";
             let result = await axios.get(url);
+            return result.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+    /**
+     * Function to get search results.
+     * @param {*} searchData 
+     */
+    static async getFlightsByFilter(searchData){
+        try {
+            let url = "http://localhost:3000/api/v1/flights/search";
+            let result = await axios.post(url, searchData);
             return result.data;
         } catch (error) {
             console.log(error);
@@ -34,7 +48,7 @@ class FlightManager {
 
     static async updateFlight(oldFlightId, newFlight){
         try {
-            let url = "http://localhost:3000/api/flights/" + oldFlightId;
+            let url = "http://localhost:3000/api/v1/flights/" + oldFlightId;
             let result = await axios.put(url, newFlight);
             return result;
         } catch (error) {
@@ -49,7 +63,7 @@ class FlightManager {
      */
     static async removeFlight(flightId) {
         try {
-            let url = "http://localhost:3000/api/flights/" + flightId;
+            let url = "http://localhost:3000/api/v1/flights/" + flightId;
             let result = await axios.delete(url);
             return result;
         } catch (error) {

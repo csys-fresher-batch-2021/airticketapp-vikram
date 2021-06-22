@@ -14,10 +14,10 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    <script src="../validator/Validator.js"></script>
-    <script src="../validator/UserValidator.js"></script>
-    <script src="../validator/PasswordValidator.js"></script>
-    <link rel="stylesheet" href="../assets/css/signup.css">
+    <script src="../../validator/Validator.js"></script>
+    <script src="../../validator/UserValidator.js"></script>
+    <script src="../../validator/PasswordValidator.js"></script>
+    <link rel="stylesheet" href="../../assets/css/signup.css">
 </head>
 
 <body>
@@ -42,7 +42,7 @@
 
             <!-- footer -->
             <div id="formFooter">
-                <a class="underlineHover" href="../views/login.html">Click here to log in :)</a>
+                <a class="underlineHover" href="../user/login.html">Click here to log in :)</a>
             </div>
         </div>
     </div>
@@ -66,7 +66,7 @@
             if (isNameValidated && isEmailValidated && isMobileNoValidated && isUsernameValidated && isPasswordValidated) {
                 alert("Signed up successfully.");
                 localStorage.setItem("SignedUpUser", JSON.stringify([name, email, mobileNo, username, password]));
-                window.location.assign('Login.html');
+                window.location.href = 'Login.html';
             }
         });
     </script>

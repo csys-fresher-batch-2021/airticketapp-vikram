@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Main Booking Page</title>
-    <link rel="stylesheet" href="D:\airticketapp-integrated\assets\css\booking.css">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
-    <script src="D:\airticketapp-integrated\service\StorageManager.js"></script>
-    <script src="D:\airticketapp-integrated\service\PriceEstimator.js"></script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
         crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -18,7 +16,9 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    <script src="../validator/Validator.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <link rel="stylesheet" href="../../assets/css/booking.css"> -->
 </head>
 
 <body>
@@ -67,52 +67,12 @@
         </form>
     </div>
 
-    <script>
-        let bookButton = document.getElementById('bookButton');
-        let flightId = StorageManager.getFromStorage('FlightID');
-
-        bookButton.addEventListener("click", function () {
-            event.preventDefault();
-            let noOfTicketsValue = document.getElementById('mySelect').value;
-            let adultsValue = document.getElementById('noOfAdults').value;
-            let childrenValue = document.getElementById('noOfChildren').value;
-            let infantValue = document.getElementById('noOfInfants').value;
-
-            let noOfTickets = JSON.parse(noOfTicketsValue);
-            let adultsCount = JSON.parse(adultsValue);
-            let childrenCount = JSON.parse(childrenValue);
-            let infantCount = JSON.parse(infantValue);
-
-            console.log(adultsCount, childrenCount, infantCount);
-            let totalCount = adultsCount + childrenCount + infantCount;
-            let seatType = document.querySelector('input[name="seatType"]:checked');
-            let isTypeChecked = Validator.validateSeatType(seatType);
-
-            if (isTypeChecked) {
-                if (totalCount == noOfTickets) {
-                    let adultPrice = PriceEstimator.estimatedPriceForAdults(adultsCount, seatType.value);
-                    let childrenPrice = PriceEstimator.estimatedPriceForChildren(childrenCount, seatType.value);
-                    let infantPrice = PriceEstimator.estimatedPriceForInfants(infantCount, seatType.value);
-                    let calculatedPrice = PriceEstimator.calculatePrice(JSON.parse(adultPrice), JSON.parse(childrenPrice), JSON.parse(infantPrice));
-
-                    StorageManager.saveToStorage("Seat", JSON.stringify(seatType.value));
-                    StorageManager.saveToStorage("TicketCount", JSON.stringify(noOfTickets));
-                    StorageManager.saveToStorage("Adults", JSON.stringify(adultsCount));
-                    StorageManager.saveToStorage("Children", JSON.stringify(childrenCount));
-                    StorageManager.saveToStorage("Infant", JSON.stringify(infantCount));
-                    StorageManager.saveToStorage("Price", JSON.stringify(calculatedPrice));
-                    window.location.href = "ticket.html";
-                }
-                else {
-                    alert("Ticket count not matching");
-                }
-            }
-            else {
-                alert("Choose your seat type");
-            }
-        });
-        document.getElementById('flightid').value = flightId;
-    </script>
+    <script src="../../service/StorageManager.js"></script>
+    <script src="../../service/FlightManager.js"></script>
+    <script src="../../service/TicketManager.js"></script>
+    <script src="../../service/PriceEstimator.js"></script>
+    <script src="../../validator/Validator.js"></script>
+    <script src="../../assets/js/Booking.js "></script>
 </body>
 
 </html>
