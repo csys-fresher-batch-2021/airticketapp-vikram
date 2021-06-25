@@ -2,7 +2,8 @@ let payBtn = document.getElementById('payBtn');
 let printBtn = document.getElementById('printBtn');
 
 payBtn.addEventListener("click", function () {
-    alert("Payment still on progress");
+    alert("Redirecting to Payment page");
+    window.location.href = "payment.html";
 });
 
 printBtn.addEventListener("click", function () {

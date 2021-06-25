@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
         crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <link rel="stylesheet" href="../../assets/css/sidebar.css">
     <title>Admin Panel</title>
 </head>
@@ -14,7 +15,7 @@
 <body>
     <nav class="sidebar">
         <div class="text-center">
-            <img src="../../assets/img/admin.png" class ="img-thumbnail" alt="..." width="35%">
+            <img src="../../assets/img/admin.png" class="img-thumbnail" alt="..." width="35%">
         </div>
         <a href="../admin/adminDashboard.html" class="active">Dashboard</a>
         <a href="../admin/adminSchedule.html">Schedule</a>
@@ -25,23 +26,54 @@
     <main class="content">
         <h1 class="display-3 text-center">Admin Panel</h1>
         <p>Welcome to Quintessa Trip</p>
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
         <h5 class="display-4">Head Office</h5>
         <address>
             <img src="../../assets/img/palace.jpg" alt="" class="img-thumbnail">
-            <strong>Quintessa.inc</strong><br>
-            76A, Petropavlovsk Palace,<br>
-            Stalingrad beach rd,<br>
-            Moskva.<br>
+            <strong>Quintessa.inc</strong>
+            <br> 76A, Petropavlovsk Palace,
+            <br> Stalingrad beach rd,
+            <br> Moskva.
+            <br>
         </address>
         <address>
             <strong>Contact Details</strong>
-            <p>Contact number - (123) 489-2709 <small>Email :</small> <a href="">petropavlovsk@ussr.com</a></p>
+            <p>Contact number - (123) 489-2709
+                <small>Email :</small>
+                <a href="">petropavlovsk@ussr.com</a>
+            </p>
         </address>
         <section id="card-container" class="row">
         </section>
     </main>
 
     <script src="../../service/DynamicElements.js"></script>
+    <script>
+        var xValues = [100,200,300,400,500,600,700,800,900,1000];
+        
+        new Chart("myChart", {
+          type: "line",
+          data: {
+            labels: xValues,
+            datasets: [{ 
+              data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+              borderColor: "red",
+              fill: false
+            }, { 
+              data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+              borderColor: "green",
+              fill: false
+            }, { 
+              data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+              borderColor: "blue",
+              fill: false
+            }]
+          },
+          options: {
+            legend: {display: false}
+          }
+        });
+        </script>
 </body>
 
 </html>

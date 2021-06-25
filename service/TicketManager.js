@@ -9,7 +9,7 @@ class TicketManager{
             let result = await axios.post(url, ticket);
             return result;
         } catch (err) {
-            console.log(err);
+            console.log(err.response);
         }
     }
 
