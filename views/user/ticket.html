@@ -8,7 +8,7 @@
     <title>Ticket</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
@@ -17,10 +17,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="../../assets/css/ticket.css">
-    
+
 </head>
 
 <body>
+    <div id="navbar"></div>
     <header>
         <h1 class="display-4 text-center">Ticket</h1>
     </header>
@@ -116,12 +117,20 @@
         <button id="payBtn" class="btn btn-primary">Pay</button>
         <button id="printBtn" class="btn btn-warning">Print</button>
         <div id="footer">
-            <small>Contact us.<a href="mailto:">support@quintessatrip.inc</a></small>
+            <small>Contact us.
+                <a href="mailto:">support@quintessatrip.inc</a>
+            </small>
         </div>
     </main>
     <script src="../../service/StorageManager.js"></script>
     <script src="../../service/FlightManager.js"></script>
     <script src="../../assets/js/ticket.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#navbar').load('../user/navbar.html');
+        });
+    </script>
 </body>
 
 </html>

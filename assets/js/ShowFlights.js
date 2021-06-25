@@ -1,5 +1,5 @@
 let tableContent = document.getElementById('table-content');
-
+let signedUser = StorageManager.getFromStorage("LoggedInUser");
 let searchData = StorageManager.getFromStorage("SEARCHDATA");
 
 displayFlights();
@@ -7,7 +7,7 @@ displayFlights();
 /**
  * Function to display all flights to table.
  */
-async function displayFlights(){
+async function displayFlights() {
     let flights = await FlightManager.getFlightsByFilter(searchData);
     flights.forEach(element => {
         //creating tr for a application.
@@ -20,16 +20,16 @@ async function displayFlights(){
         //creating td for flight number.
         let tdFlightNo = DynamicElements.createTableData();
         tdFlightNo.innerText = element.flight_no;
-        tr.appendChild(tdFlightNo);        
+        tr.appendChild(tdFlightNo);
 
         //creating td for flight company name.
         let tdAirline = DynamicElements.createTableData();
         tdAirline.innerText = element.airline;
         tr.appendChild(tdAirline);
-        
+
         //creating td for date.
         let tdDate = DynamicElements.createTableData();
-        tdDate.innerText = element.flight_date.substr(0,10);
+        tdDate.innerText = element.flight_date.substr(0, 10);
         tr.appendChild(tdDate);
 
         //creating td for departure place and time.
@@ -66,11 +66,11 @@ async function displayFlights(){
         tdEconomyPrice.id = "economy";
         tr.appendChild(tdEconomyPrice);
 
-         //creating td for business seat price.
-         let tdBusinessPrice = DynamicElements.createTableData();
-         tdBusinessPrice.innerText = element.business_price;
-         tdBusinessPrice.id = "business";
-         tr.appendChild(tdBusinessPrice);
+        //creating td for business seat price.
+        let tdBusinessPrice = DynamicElements.createTableData();
+        tdBusinessPrice.innerText = element.business_price;
+        tdBusinessPrice.id = "business";
+        tr.appendChild(tdBusinessPrice);
 
         //creating td for button.
         let tdButton = DynamicElements.createTableData();
@@ -88,17 +88,23 @@ async function displayFlights(){
 /**
  * Function to add event listener to all dynamically generated buttons.
  */
-function addListenerToButtons(){
-    if(document.querySelector('button')){
-        document.querySelectorAll('.bookBtn').forEach(function(event){
-            event.addEventListener('click', function(e){
-                let flightId = e.target.parentNode.parentNode.querySelector('th').innerText;
-                let economy = e.target.parentNode.parentNode.querySelector('#economy').innerText;
-                let business = e.target.parentNode.parentNode.querySelector('#business').innerText;
-                localStorage.setItem("USERFLIGHTID", JSON.stringify(flightId));
-                localStorage.setItem("EconomyPrice", JSON.stringify(economy));
-                localStorage.setItem("BusinessPrice", JSON.stringify(business));
-                window.location.href = "bookingpage.html";
+function addListenerToButtons() {
+    if (document.querySelector('button')) {
+        document.querySelectorAll('.bookBtn').forEach(function (event) {
+            event.addEventListener('click', function (e) {
+                if (signedUser == null) {
+                    alert("please login and continue");
+                    window.location.href = "login.html";
+                }
+                else {
+                    let flightId = e.target.parentNode.parentNode.querySelector('th').innerText;
+                    let economy = e.target.parentNode.parentNode.querySelector('#economy').innerText;
+                    let business = e.target.parentNode.parentNode.querySelector('#business').innerText;
+                    localStorage.setItem("USERFLIGHTID", JSON.stringify(flightId));
+                    localStorage.setItem("EconomyPrice", JSON.stringify(economy));
+                    localStorage.setItem("BusinessPrice", JSON.stringify(business));
+                    window.location.href = "bookingpage.html";
+                }
             });
         });
     }

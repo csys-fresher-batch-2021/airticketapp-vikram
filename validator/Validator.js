@@ -6,7 +6,6 @@ class Validator {
      */
     static validateName(name) {
         if (name == null || name == "") {
-            alert("Name field cannot be empty");
             return false;
         }
         return true;
@@ -49,7 +48,6 @@ class Validator {
         //email can have a-z or A-Z or 0-9 with @ a-z or A-Z or 0-9
         let pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         if (email == null || email == "" || !pattern.test(email)) {
-            alert("Invalid email id");
             return false;
         }
         else {
@@ -64,7 +62,6 @@ class Validator {
     static validateMobileNo(mobileNo) {
         let pattern = /^\d{10}$/; // mobile no with 10 digits.
         if (mobileNo == null || mobileNo == "" || !pattern.test(mobileNo)) {
-            alert("Invalid mobile number");
             return false;
         }
         else {
@@ -77,16 +74,16 @@ class Validator {
      * @param {string} username 
      * @param {string} password 
      */
-    static isUserExists(username, password) {
-        let savedUsername = JSON.parse(localStorage.getItem("SignedUpUser"))[3];
-        let savedPassword = JSON.parse(localStorage.getItem("SignedUpUser"))[4];
-        if (username == savedUsername && password == savedPassword) {
-            return true;
+    static isUserExists(email) {
+        let exists = false;
+        let signedUser = UserManager.getAllUsers();
+        for(let i = 0; i < signedUser.length; i++){
+            if(signedUser[i].email === email){
+                exists = true;
+                break;
+            }
         }
-        else {
-            alert("user not exists! Sign up first.");
-            return false;
-        }
+        return exists;
     }
 
     /**
@@ -100,5 +97,39 @@ class Validator {
         else {
             return true;
         }
+    }
+
+    /**
+     * This function validates the username and return true if the username is correct or returns false.
+     * @param {string} userName 
+     */
+    static validateUserName(userName) {
+        //User name field should not be empty.
+        if (userName == "" || userName == null) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * This function validates the password with a regular expression. It returns true or false based on validation result.
+     * @param {string} passWord 
+     */
+    static validatePassword(passWord) {
+        //Regular expression for pattern matching only 8-15 characters allowed with atleast one lowercase letter and one uppercase letter.
+        let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+
+        //password field should not be empty.
+        if (passWord == null || passWord == "") {
+            alert("password field should be filled.");
+            return false;
+        }
+
+        //password should match the given condition.
+        if (!(passWord.match(passwordRegex))) {
+            alert("Password must contain atleast 8 to 15 characters, at least one lowercase letter, one uppercase letter, one numeric digit, and one special character")
+            return false;
+        }
+        return true;
     }
 }

@@ -11,24 +11,14 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../assets/css/search.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Quintessa Trip</a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact Us</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <div id="navbar"></div>
 
     <div class="container">
         <h4 class="">Check Availability</h4>
@@ -63,10 +53,17 @@
             <button type="submit" class="btn btn-primary" id="searchBtn">search</button>
         </form>
     </div>
-    
+
     <script src="../../service/StorageManager.js"></script>
     <script src="../../service/FlightManager.js"></script>
     <script src="../../assets/js/search.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#navbar').load('../user/navbar.html');
+        });
+    </script>
+
 </body>
 
 </html>

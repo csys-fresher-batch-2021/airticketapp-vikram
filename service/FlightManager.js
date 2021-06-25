@@ -11,7 +11,7 @@ class FlightManager {
             let result = await axios.post(url, flight);
             return result;
         } catch (err) {
-            console.log(err);
+            console.log(err.response);
         }
     }
 
