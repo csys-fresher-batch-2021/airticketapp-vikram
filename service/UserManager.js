@@ -6,17 +6,14 @@ class UserManager {
      * Function to add new user.
      * @param {*} user 
      */
-    static addUser(user) {
-        users = this.getAllUsers();
-        // let length = users.length;
-        // if(length > 0){
-        //     let lastElementId = users[length-1].id;
-        //     user['id'] = lastElementId + 1;
-        // } else{
-        //     user['id'] = 1;
-        // }
-        users.push(user);
-        this.saveUsers(users);
+    static async addUser(user) {
+        try {
+            let url = "http://localhost:3000/api/v1/signup";
+            let result = await axios.post(url, user);
+            return result.data;
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     /**
@@ -27,7 +24,17 @@ class UserManager {
         return users;
     }
 
-    static saveUsers(users) {
-        localStorage.setItem("USERS", JSON.stringify(users));
+    /**
+     * Function to get user by mail.
+     * @param {*} user 
+     */
+    static async getUserByMail(user){
+        try {
+            let url = "http://localhost:3000/api/v1/login";
+            let result = await axios.post(url, user);
+            return result.data;
+        } catch (error) {
+            console.log(error);
+        }
     }
 }

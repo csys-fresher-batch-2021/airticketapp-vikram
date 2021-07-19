@@ -40,7 +40,7 @@ class PaymentValidator{
      */
     static isValidExpYear(expYear){
         if(!isNaN(expYear)){
-            if(expYear.toString().length === 2 && expYear >= 21){
+            if(expYear.toString().length === 2 && expYear > 21){
                 return true;
             }
         }

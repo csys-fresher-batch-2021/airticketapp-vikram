@@ -4,15 +4,19 @@ class UserValidator {
      * @param {*} email 
      * @param {*} password 
      */
-    static authenticateUser(email, password) {
+    static async authenticateUser(user) {
         let validUser = false;
-        let SignedUpUsers = UserManager.getAllUsers();
-        for (let i = 0; i < SignedUpUsers.length; i++) {
-            if ((SignedUpUsers[i].email === email) && (SignedUpUsers[i].password === password)) {
-                validUser = true;
-                break;
-            }
+        let status = await UserManager.getUserByMail(user);
+        if(status.length > 0){
+            localStorage.setItem("CLIENT_TOKEN", JSON.stringify(status[0].token));
+            validUser = true;
         }
+        // for (let i = 0; i < SignedUpUsers.length; i++) {
+        //     if ((SignedUpUsers[i].email === email) && (SignedUpUsers[i].password === password)) {
+        //         validUser = true;
+        //         break;
+        //     }
+        // } 
         return validUser;
-    }
+    }   
 }
