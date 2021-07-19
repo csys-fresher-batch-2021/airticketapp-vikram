@@ -4,7 +4,7 @@ console.log(flightId);
 let flightData = FlightManager.getFlightData(flightId);
 flightData.then(n => document.getElementById('flightid').value = n.flight_no);
 
-bookButton.addEventListener("click", function () {
+bookButton.addEventListener("click",function () {
     event.preventDefault();
     let noOfTicketsValue = document.getElementById('mySelect').value;
     let adultsValue = document.getElementById('noOfAdults').value;
@@ -35,7 +35,6 @@ bookButton.addEventListener("click", function () {
             StorageManager.saveToStorage("Infant", infantCount);
             StorageManager.saveToStorage("Price", calculatedPrice);
             bookTicket();
-            window.location.href = "ticket.html";
         }
         else {
             alert("Ticket count not matching");
@@ -47,7 +46,6 @@ bookButton.addEventListener("click", function () {
 });
 
 async function bookTicket() {
-
     let flightDetails = await FlightManager.getFlightData(flightId);
     console.log("Booking",flightDetails);
     let flightNo = flightDetails.flight_no;
@@ -62,7 +60,7 @@ async function bookTicket() {
     let adult = StorageManager.getFromStorage("Adults");
     let children = StorageManager.getFromStorage("Children");
     let infant = StorageManager.getFromStorage("Infant");
-    let price = StorageManager.getFromStorage("Price");
+    let price = parseInt(StorageManager.getFromStorage("Price"));
 
     const ticket = {
         "no": flightNo,
@@ -80,6 +78,16 @@ async function bookTicket() {
         "price": price
     };
 
-    console.log(ticket);
-    await TicketManager.bookTicket(ticket);
+    const result = await TicketManager.bookTicket(ticket);
+    console.log(result);
+    if(result.status === 200){ 
+        window.location.href = "ticket.html"; 
+    }
+    else if(result.status == 401){
+        alert("Session expired");
+        window.location.href = "login.html";
+    }
+    else{
+        alert(result.data);
+    }
 }
